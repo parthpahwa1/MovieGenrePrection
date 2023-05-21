@@ -13,10 +13,10 @@ class ModelConfig():
     INPUT_COLUMN: str = 'overview'
     TARGET_COLUMN: str = 'genres'
     PRE_TRAINED_MODEL: str = 'all-MiniLM-L6-v2'
-    MODEL_LOC: str = './models/artifacts/mlp.pkl'
-    VALIDATION_RESULTS_LOC: str = './models/artifacts/perfromance.csv'
-    TRAIN_DATA_LOC: str = './data/movies_metadata.csv'
-    ENCODER_LOC: str = './models/artifacts/encoded_classes.npy'
-    EMBEDDING_DATA_LOC: str = './data/data_with_embedding.pkl'
+    MODEL_LOC: str = './app/models/artifacts/mlp.pkl'
+    VALIDATION_RESULTS_LOC: str = './app/models/artifacts/perfromance.csv'
+    TRAIN_DATA_LOC: str = './app/data/movies_metadata.csv'
+    ENCODER_LOC: str = './app/models/artifacts/encoded_classes.npy'
+    EMBEDDING_DATA_LOC: str = './app/data/data_with_embedding.pkl'
     NUM_CATEGORIES: int = 33
     INPUT_SIZE: int = 384

@@ -1,11 +1,11 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 import numpy as np
-from utils.errors import InvalidUsage
-from config.model_config import ModelConfig
-from models.train import ClassificationTrainer
-from models.utils import DataPreporcess
-from models.inference import ClassificationInference
+from app.utils.errors import InvalidUsage
+from app.config.model_config import ModelConfig
+from app.models.train import ClassificationTrainer
+from app.models.utils import DataPreporcess
+from app.models.inference import ClassificationInference
 import pandas as pd
 import torch
 import os
@@ -72,9 +72,6 @@ class GenrePredictor(Resource, metaclass=Singleton):
         except Exception as e:
             raise InvalidUsage('Wrong', status_code=500)
 
-np.random.seed(ModelConfig.SEED)
-torch.manual_seed(ModelConfig.SEED)
-
 def train_model():
     """
     Train the genre prediction model if it has not been trained yet.
@@ -105,5 +102,7 @@ def create_app():
     return app
 
 if __name__ == '__main__':
+    np.random.seed(ModelConfig.SEED)
+    torch.manual_seed(ModelConfig.SEED)
     app = create_app()
     app.run(port=8000, debug=True)
