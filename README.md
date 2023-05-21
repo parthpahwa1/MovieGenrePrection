@@ -18,6 +18,22 @@ Note this code uses poetry for package management - To install poetry please fol
 
 ``poetry run python run.py``
 
+### Testing with curl
+``
+curl -d "overview=A movie about penguins in Antarctica building a spaceship to go to Mars" -X POST http://localhost:8000
+``
+> Output format
+
+``
+{
+    "genre": [
+        "Documentary", 
+        "Action",
+    ]
+}
+``
+
+
 ### Structure
 > config
 * Contains all constant and config values
