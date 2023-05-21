@@ -14,11 +14,6 @@ class ClassificationInference(torch.nn.Module):
         ModelConfig (Config): Configuration object containing parameters for data preprocessing,
         the model, and paths for loading the pre-trained model and the label encoder.
     """
-
-    config = None
-    model = None
-    data_processor = None
-
     def __init__(
             self,
             ModelConfig,
@@ -83,6 +78,6 @@ class ClassificationInference(torch.nn.Module):
         """
         # Preprocess the input data
         embd = self.data_processor.sentence_transformer.encode([input_])
-        print(self.data_processor)
+        
         # Perform inference and return the model's raw output (logits)
         return self.model(torch.FloatTensor(embd))
