@@ -69,8 +69,11 @@ class GenrePredictor(Resource, metaclass=Singleton):
             
             return {'genre': tuple(genre)}, 200
         
+        except KeyError:
+            raise InvalidUsage("No 'overview' field in the request", status_code=400)
         except Exception as e:
-            raise InvalidUsage('Wrong', status_code=500)
+            raise InvalidUsage(f"An unexpected error occurred: {str(e)}", status_code=500)
+
 
 def train_model():
     """
@@ -81,6 +84,7 @@ def train_model():
     else:
         df = DataPreporcess(ModelConfig).get_training_data()
     ClassificationTrainer(ModelConfig).split_data_and_train(df)
+
 
 
 def create_app():
@@ -99,6 +103,11 @@ def create_app():
     app = Flask(__name__)
     api = Api(app)
     api.add_resource(GenrePredictor, '/')
+
+    @app.errorhandler(InvalidUsage)
+    def handle_invalid_usage(error):
+        return error.to_response()
+    
     return app
 
 if __name__ == '__main__':
