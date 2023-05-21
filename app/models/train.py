@@ -141,7 +141,8 @@ class ClassificationTrainer(torch.nn.Module):
             true_list, 
             pred_list, 
             output_dict=True, 
-            target_names=np.load(self.config.ENCODER_LOC)
+            target_names=np.load(self.config.ENCODER_LOC),
+            zero_division=0
         )
         report = pd.DataFrame(report).transpose()
         print(report)
