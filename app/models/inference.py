@@ -56,13 +56,13 @@ class ClassificationInference(torch.nn.Module):
         # Get model predictions
         preds = self(input_)
         preds = preds.sigmoid().detach().numpy()
-
+        
         # Get the labels that have a predicted probability higher than the threshold
         label_list = np.where(preds > threshold)[1]
-
+        
         # If no labels exceed the threshold, select the label with the highest probability
         if len(label_list) == 0:
-            label_list = np.argmax(preds)
+            label_list = [np.argmax(preds)]
         
         return self.encoder.inverse_transform(label_list)
 

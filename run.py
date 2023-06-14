@@ -61,7 +61,7 @@ class GenrePredictor(Resource, metaclass=Singleton):
             tuple: Tuple containing a dictionary of genres and a status code.
         """
         try:
-            # fetech overview from request 
+            # fetech overview from request
             overview = request.form['overview']
 
             # Predict the genre
